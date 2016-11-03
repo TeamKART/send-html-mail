@@ -58,7 +58,7 @@ Password: 123456
     ```
     --headers "{`"X-Mailgun-Campaign-Id`":`"foobar`"}"
     ```
-* List: `--list -`
+* List: `--list -l`
 
     List headers. The string must be JSON.
     
