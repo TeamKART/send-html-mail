@@ -56,7 +56,7 @@ Password: 123456
     For example:
     
     ```
-    --headers "{\`"X-Mailgun-Campaign-Id\`":\`"foobar\`"}"
+    --headers "{`"X-Mailgun-Campaign-Id`":`"foobar`"}"
     ```
 * List: `--list -`
 
@@ -65,7 +65,7 @@ Password: 123456
     For example:
     
     ```
-    --list "{\`"unsubscribe\`":\`"%unsubscribe_email%\`"}"
+    --list "{`"unsubscribe`":`"%unsubscribe_email%`"}"
     ```
 * Text Mode: `--text`
 
