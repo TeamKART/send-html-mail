@@ -1,13 +1,14 @@
 "use strict"
 var fs = require('fs')
 
-var emailPatt = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/
+var emailPatt = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/,
+    validServices = ["1und1", "AOL", "DebugMail.io", "DynectEmail", "FastMail", "GandiMail", "Gmail", "Godaddy", "GodaddyAsia", "GodaddyEurope", "hot.ee", "Hotmail", "iCloud", "mail.ee", "Mail.ru", "Mailgun", "Mailjet", "Mandrill", "Naver", "Postmark", "QQ", "QQex", "SendCloud", "SendGrid", "SES", "Sparkpost", "Yahoo", "Yandex", "Zoho"]
 
 var options = require('command-line-args')([
     { name: 'user', alias: 'u', type: String },
     { name: 'pass', alias: 'p', type: String },
     { name: 'service', type: String },
-    { name: 'headers', type: String },
+    { name: 'headers', alias: 'h', type: String },
     { name: 'list', alias: 'l', type: String },
     { name: 'proxy', type: String },
     { name: 'to', alias: 't', type: String, multiple: true },
@@ -31,20 +32,23 @@ JSON.test = function (str) {
 options.user = options.user || process.env.MGUSERNAME
 options.pass = options.pass || process.env.MGPASSWORD
 options.proxy = options.proxy || process.env.HTTP_PROXY
+options.service = options.service || 'Mailgun'
 options.from = options.from || options.user
 
 if (!options.user || !options.pass || !emailPatt.test(options.user))
     throw new Error('Error in Login Credentials')
 if (!options.to || !options.to.length)
     throw new Error('To address Not found')
-if (!options.subject)
-    throw new Error('Subject Not found')
 if (options.replyTo && !emailPatt.test(options.replyTo))
+    throw new Error('ReplyTo email not valid')
+if (options.from && !emailPatt.test(options.from))
     throw new Error('ReplyTo email not valid')
 if (!options.body)
     throw new Error('Body is required')
 if ((options.headers && !JSON.test(options.headers)) || (options.list && !JSON.test(options.list)))
     throw new Error('Invalid JSON detected')
+if (options.service && validServices.indexOf(options.service) === -1)
+    throw new Error('Invalid Service')
 fs.stat(options.body, function (e, s) {
     if (e)
         throw new Error('File not found')
@@ -60,7 +64,7 @@ fs.stat(options.body, function (e, s) {
         options.list = JSON.parse(options.list)
 
     var transport = require('nodemailer').createTransport({
-        service: options.service || 'Mailgun',
+        service: options.service,
         auth: {
             user: options.user,
             pass: options.pass
