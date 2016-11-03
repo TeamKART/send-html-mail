@@ -1,0 +1,9 @@
+{
+  "name": "send-html-mail",
+  "version": "1.0.0",
+  "dependencies": {
+    "command-line-args": "^3.0.2",
+    "nodemailer": "^2.6.4",
+    "nodemailer-html-to-text": "^2.1.0"
+  }
+}
