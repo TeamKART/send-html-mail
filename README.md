@@ -30,7 +30,7 @@ Password: 123456
     Default value is "Mailgun". List of supported services are [here](https://nodemailer.com/2-0-0-beta/setup-smtp/well-known-services/)
 * Proxy Server: `--proxy`
 
-    If variable is absent, environment variable HTTP_PROXY is used. The proxy server must support
+    If variable is absent, environment variable HTTP_PROXY is used. The proxy server must support SMTP transport
 * To: `--to -t`
 
     Recipients. At least one is required
@@ -51,18 +51,14 @@ Password: 123456
     Body of the mail. Must be a valid file path.
 * Headers: `--headers -h`
 
-    Additional mail headers. The string must be JSON.
-    
-    For example:
+    Additional mail headers. The string must be JSON. For example:
     
     ```
     --headers "{`"X-Mailgun-Campaign-Id`":`"foobar`"}"
     ```
 * List: `--list -l`
 
-    List headers. The string must be JSON.
-    
-    For example:
+    List headers. The string must be JSON. For example:
     
     ```
     --list "{`"unsubscribe`":`"%unsubscribe_email%`"}"
