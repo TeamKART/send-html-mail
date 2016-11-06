@@ -11,6 +11,8 @@ Username: sender@domain.com
 
 Password: 123456
 
+Open a new shell (PowerShell if windows), go to the folder where the repo was cloned to and execute any of the following
+
 `node send --user sender@domain.com --pass 123456 --to recipient1@domain.com recipient2@domain.com --subject "TEST mail" --body "path/email.html"`
 
 `node send -u sender@domain.com -p 123456 -t recipient1@domain.com recipient2@domain.com -s "TEST mail" -b "path/email.html"`
