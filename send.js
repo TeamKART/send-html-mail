@@ -20,6 +20,7 @@ var options = require('command-line-args')([
     { name: 'name', alias: 'n', type: String },
     { name: 'body', alias: 'b', type: String },
     { name: 'text', type: Boolean },
+    { name: 'noproxy', type: Boolean },
     { name: 'debug', type: Boolean }
 ])
 
@@ -31,9 +32,10 @@ JSON.test = function (str) {
 
 options.user = options.user || process.env.MGUSERNAME
 options.pass = options.pass || process.env.MGPASSWORD
-options.proxy = options.proxy || process.env.HTTP_PROXY
 options.service = options.service || 'Mailgun'
 options.from = options.from || options.user
+if (!options.noproxy)
+    options.proxy = options.proxy || process.env.HTTP_PROXY
 
 if (!options.user || !options.pass || !emailPatt.test(options.user))
     throw new Error('Error in Login Credentials')
