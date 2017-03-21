@@ -1,10 +1,10 @@
-#send-html-mail
-##Node.js script for sending HTML or Text emails from the command line
+# send-html-mail
+## Node.js script for sending HTML or Text emails from the command line
 
-###Requirements
+### Requirements
 * [Node.js](https://nodejs.org/en/download/)
 
-###Example
+### Example
 Body of an html email is stored in path/email.html to be sent to recipient1@domain.com and recipient2@domain.com with subject `Hello world`
 
 Username: sender@domain.com
@@ -19,7 +19,7 @@ Open a new shell (PowerShell if windows), go to the folder where the repo was cl
 
 `node send -u sender@domain.com -p 123456 -t recipient1@domain.com -t recipient2@domain.com -s "TEST mail" -b "path/email.html"`
 
-###Options
+### Options
 
 * Username: `--user` or `-u`
 
@@ -72,5 +72,5 @@ Open a new shell (PowerShell if windows), go to the folder where the repo was cl
 
     Turn on debugger mode
 
-####Within IIT KGP
+#### Within IIT KGP
 KGP's proxy server will not work with this because it doesn't support some necessary features for SMTP transport
